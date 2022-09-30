@@ -1,0 +1,11 @@
+<h1>{{this.title}}</h1>
+<br>
+
+<div class="container" style="border: 1px solid black; margin: auto; width: 80%;">
+    <div *ngFor="let post of faceappservice.posts">
+        <div>{{post.title}}</div>
+        <div>{{post.content}}</div>
+        
+    </div>
+
+</div>

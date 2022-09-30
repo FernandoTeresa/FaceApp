@@ -1,0 +1,33 @@
+[
+    {
+        "id":1,
+        "conteudo": "bora eu levo os filtros que andas a extorquir-me lol ",
+        "data": "2022-09-13",
+        "id_post": 2,
+        "id_user": 4
+    },
+
+    {
+        "id":2,
+        "conteudo": "nao gosto de futebol!!",
+        "data": "2022-09-30",
+        "id_post": 1,
+        "id_user": 1
+    },
+
+    {
+        "id":3,
+        "conteudo": "AHAHAHHA pureza foi aquilo que fumaste lol ",
+        "data": "2022-09-30",
+        "id_post": 4,
+        "id_user": 1
+    },
+
+    {
+        "id":4,
+        "conteudo": "vou falar com o dudu ele tem um bom cabeleireiro:P",
+        "data": "2022-09-29",
+        "id_post": 3,
+        "id_user": 5
+    }
+]
