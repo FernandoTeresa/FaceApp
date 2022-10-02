@@ -28,6 +28,7 @@ export class FaceAppService {
       let a = res[i];
       let post:Post = new Post(a.id,a.title,a.content,new Date(a.date),a.id_user,a.user,a.comments);
       this.posts.push(post);
+      console.log(a.comments)
     }
     });
   }
