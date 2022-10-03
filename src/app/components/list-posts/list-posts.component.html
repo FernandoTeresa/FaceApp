@@ -1,0 +1,30 @@
+<br>
+<div class="container">
+    <div *ngFor="let post of faceappservice.posts">
+
+        <div>
+
+            <div class="posts">
+                <div class="title">Titulo: {{post.title}}</div>
+        
+                <div class="post">{{post.content}}</div>
+                
+                <div class="date-user">
+                    <div> date: {{post.date}} </div>
+                    <div> author: {{post.user.first_name}} {{post.user.last_name}} </div>
+                </div>
+            </div>
+
+                <div *ngFor="let item of post.comments" style="display: flex; margin: 10px;">
+                    <div class="leftcomments"></div>
+                    <div class="comments">
+                        <div class="comentario"> {{item.content}}</div>
+                        <div> {{item.user.first_name}} {{item.user.last_name}}</div>
+                        <div> {{item.date}}</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" (click)="addbutton()">add Post</button>

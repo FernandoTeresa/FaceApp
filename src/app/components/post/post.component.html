@@ -1,1 +1,16 @@
-<p>post works!</p>
+<router-outlet></router-outlet>
+
+<h1>Post</h1>
+
+<form #postform="ngForm" (ngSubmit)="add(postform.value)">
+    <label>First Name</label>
+    <input type="text" placeholder="First name" name="fname" ngModel><br>
+    <label>Last Name</label>
+    <input type="text" placeholder="Last name" name="lname" ngModel><br>
+    <label>Title</label>
+    <input type="text" placeholder="Title of the Post" name="title" ngModel>
+    <br>
+    <textarea id="" placeholder="content of the post" name="content" ngModel></textarea>
+
+    <input type="submit" value="Submit">
+</form>

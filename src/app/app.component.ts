@@ -2,6 +2,7 @@ import { Post } from './classes/post';
 import { FaceAppService } from './services/face-app.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,10 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent{
   title = 'FaceApp';
 
-  constructor(public faceappservice:FaceAppService){}
+  constructor(private router: Router){}
 
   ngOnInit(): void {
-    this.faceappservice.dataRequestPost();
-  }
 
-  get(){
-    this.faceappservice.getPost;
-    this.faceappservice.getUser;
   }
 
 
