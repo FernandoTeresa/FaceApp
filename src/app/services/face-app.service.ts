@@ -22,15 +22,16 @@ export class FaceAppService {
 
   constructor(private http: HttpClient) { }
 
-  dataRequestPost() {
+  dataRequestUser(){
     this.http.get<User[]>('http://localhost:3000/posts').subscribe((a: User[]) => {
       for (let i = 0; i < a.length; i++) {
         let users: User = new User(a[i].id, a[i].first_name, a[i].last_name);
         this.user.push(users);
       }
-
     });
+  }
 
+  dataRequestPost() {
     this.http.get<Post[]>('http://localhost:3000/posts').subscribe((res: Post[]) => {
       for (let i = 0; i < res.length; i++) {
         let a = res[i];
@@ -61,8 +62,6 @@ export class FaceAppService {
       
       let post: Post = new Post(value.id, value.title, value.content, value.date, value.id_user, user, value.comments);
       this.posts.push(post);
-
-
   }
 
   addcomments(value: Comment, idpost: number){
@@ -71,20 +70,15 @@ export class FaceAppService {
       first_name: 'PiPi',
       last_name: 'Meia Rasgada'
     }
-
+  
     value.id = Math.floor(Math.random() * (20 - 5) + 5);
     value.id_user = 6;
     value.date = new Date();
 
     let comment: Comment = new Comment(value.id, value.content, value.date, idpost,value.id_user,user)
     this.comments.push(comment);
+
   }
-
-
-  // addcom(value: Comment, posts : Post){
-  //     let comment = new Comment(value.id, value.content ,value.date, value.id_post, value.id_user, value.user);
-  //     let post = new Post(posts.id, posts.title, posts.content, posts.date, posts.id_user, posts.user, this.comments);
-     
-  //  }
+  
 
 }
