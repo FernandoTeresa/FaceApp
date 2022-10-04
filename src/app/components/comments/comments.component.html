@@ -1,0 +1,10 @@
+<router-outlet></router-outlet>
+<form #commentform="ngForm" (ngSubmit)="addcomment(commentform.value)">
+
+    <br>
+    <label>Content:</label><br>
+    <textarea placeholder="Seccion of comments" name="content" ngModel style="width: 400px; height: 100px"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+    
+</form>

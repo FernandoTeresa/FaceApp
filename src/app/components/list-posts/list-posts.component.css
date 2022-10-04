@@ -6,6 +6,7 @@
 
 .posts{
     border: 1px solid black;
+    margin: 20px;
 }
 
 .title{
@@ -15,12 +16,12 @@
 }
 
 .post{
-    margin: 5px 0 5px 0;
+    margin: 15px;
     padding: 10px;
 }
 
 .comments{
-    width: 40%;
+    width: 90%;
     margin: 15px;
     padding: 10px;
     border: 1px solid black;
@@ -28,7 +29,6 @@
 
 .leftcomments{
     width: 60%;
-
 }
 
 .date-user{

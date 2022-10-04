@@ -7,12 +7,14 @@ import { PostComponent } from './components/post/post.component';
 import { FormsModule } from '@angular/forms';
 import { ListPostsComponent } from './components/list-posts/list-posts.component';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './components/not-found/not-found.component'; 
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CommentsComponent } from './components/comments/comments.component'; 
 
 const appRoutes: Routes = [ 
   { path: 'List Posts', component: ListPostsComponent }, 
   { path: 'Add Posts', component: PostComponent },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent },
+  { path: 'Add Comments', component: CommentsComponent}
 ];  
 
 @NgModule({
@@ -21,6 +23,7 @@ const appRoutes: Routes = [
     PostComponent,
     ListPostsComponent,
     NotFoundComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

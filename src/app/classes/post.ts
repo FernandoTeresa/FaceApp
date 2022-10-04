@@ -1,3 +1,4 @@
+
 import { Comment } from './comment';
 import { IPost } from './../interfaces/i-post';
 import { User } from './user';
@@ -25,4 +26,6 @@ export class Post implements IPost{
             this.comments.push(b);
         }
     }
+    
+
 }

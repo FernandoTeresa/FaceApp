@@ -17,14 +17,8 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
   add(value:Post){
-    
-    console.log(value);
     this.faceappservice.addPost(value);
-
   }
-
-
 
 }

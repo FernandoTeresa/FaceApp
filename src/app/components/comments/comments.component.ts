@@ -1,0 +1,22 @@
+import { Comment } from './../../classes/comment';
+import { Component, Input, OnInit } from '@angular/core';
+import { FaceAppService } from 'src/app/services/face-app.service';
+
+@Component({
+  selector: 'app-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.css']
+})
+export class CommentsComponent implements OnInit {
+  @Input() postId!: number;
+
+  constructor(public faceappservice:FaceAppService) { }
+
+  ngOnInit(): void {
+  }
+
+  addcomment(value: Comment){
+    this.faceappservice.addcomments(value, this.postId);
+  }
+
+}
