@@ -21,10 +21,11 @@
 }
 
 .comments{
-    width: 90%;
+    width: 450px;
     margin: 15px;
     padding: 10px;
     border: 1px solid black;
+    overflow: auto;
 }
 
 .leftcomments{

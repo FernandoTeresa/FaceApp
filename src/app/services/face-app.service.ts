@@ -75,18 +75,12 @@ export class FaceAppService {
     value.id_user = 6;
     value.date = new Date();
     value.user = user;
-    console.log(value);
     let post = this.posts.find(item => item.id === idpost);
     if (post != undefined){
       post.addComment(value);
     }
 
-    
-  
-    
+ 
   }
-
-
-
 
 }

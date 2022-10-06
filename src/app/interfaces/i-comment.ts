@@ -1,4 +1,3 @@
-import { Post } from "../classes/post";
 import { User } from "../classes/user";
 
 export interface IComment {

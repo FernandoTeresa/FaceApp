@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router"
-import { HttpClient } from '@angular/common/http';
 import { Post } from 'src/app/classes/post';
 import { FaceAppService } from 'src/app/services/face-app.service';
 
@@ -12,13 +10,17 @@ import { FaceAppService } from 'src/app/services/face-app.service';
 })
 export class PostComponent implements OnInit {
 
-  constructor(private router: Router, private http:HttpClient, public faceappservice:FaceAppService) { }
+  constructor(public faceappservice:FaceAppService) { }
 
   ngOnInit(): void {
   }
 
   add(value:Post){
     this.faceappservice.addPost(value);
+    let x = <HTMLInputElement>document.getElementById("title_post");
+    x.value = '';
+    let y = <HTMLInputElement>document.getElementById("content_post");
+    y.value = '';
   }
 
 }

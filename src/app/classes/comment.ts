@@ -10,7 +10,6 @@ export class Comment implements IComment{
     user:User;
 
     constructor(id:number, content:string, date:Date, id_post:number, id_user:number, user:User){
-        console.log(id, content, date, id_post, id_user, user)
         this.id=id;
         this.content=content;
         this.date=date;

@@ -27,7 +27,6 @@ export class Post implements IPost{
     }
     
     addComment(comment:Comment){
-        console.log("comment", comment);
         let a = new Comment(comment.id,comment.content,comment.date,this.id,comment.id_user,comment.user);
         this.comments.push(a);
     }

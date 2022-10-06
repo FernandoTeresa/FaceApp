@@ -17,6 +17,8 @@ export class CommentsComponent implements OnInit {
 
   addcomment(value: Comment){
     this.faceappservice.addcomments(value, this.postId);
+    let x = <HTMLInputElement>document.getElementById("new_comments");
+    x.value = '';
   }
 
 }
