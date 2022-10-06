@@ -70,15 +70,23 @@ export class FaceAppService {
       first_name: 'PiPi',
       last_name: 'Meia Rasgada'
     }
-  
-    value.id = Math.floor(Math.random() * (20 - 5) + 5);
+
+    value.id = Math.floor(Math.random() * (20 - 8) + 8);
     value.id_user = 6;
     value.date = new Date();
+    value.user = user;
+    console.log(value);
+    let post = this.posts.find(item => item.id === idpost);
+    if (post != undefined){
+      post.addComment(value);
+    }
 
-    let comment: Comment = new Comment(value.id, value.content, value.date, idpost,value.id_user,user)
-    this.comments.push(comment);
-
-  }
+    
   
+    
+  }
+
+
+
 
 }

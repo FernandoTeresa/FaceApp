@@ -26,10 +26,10 @@ export class Post implements IPost{
         }
     }
     
-    addComment(comment:Comment){ 
-        let a = comment;
-        let b = new Comment(a.id,a.content,a.date,this.id,a.id_user,a.user);
-        this.comments.push(b);
+    addComment(comment:Comment){
+        console.log("comment", comment);
+        let a = new Comment(comment.id,comment.content,comment.date,this.id,comment.id_user,comment.user);
+        this.comments.push(a);
     }
 
 }

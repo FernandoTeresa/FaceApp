@@ -1,14 +1,12 @@
 <router-outlet></router-outlet>
 
-<h1>Post</h1>
-
 <form #postform="ngForm" (ngSubmit)="add(postform.value)">
 
     <label>title:</label><br>
     <input type="text" placeholder="Title of the Post" name="title" ngModel>
     <br>
     <label>Content:</label><br>
-    <textarea placeholder="content of the post" name="content" ngModel style="width: 400px; height: 200px"></textarea>
+    <textarea placeholder="content of the post" name="content" ngModel style="width: 1100px; height: 200px"></textarea>
     <br>
     <input type="submit" value="Submit">
 </form>
