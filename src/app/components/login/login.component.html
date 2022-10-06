@@ -1,0 +1,14 @@
+<router-outlet></router-outlet>
+
+<form #loginForm="ngForm" (ngSubmit)="login_form(loginForm.value)">
+
+    <br>
+    <label>Username:</label><br>
+    <input id="username" type="text" placeholder="Username" name="username" ngModel>
+    <br>
+    <label>password:</label><br>
+    <input id="password" type="password" placeholder="Password" name="password" ngModel>
+    <br>
+    <input type="submit" value="Submit">
+    
+</form>

@@ -1,10 +1,10 @@
+import { User } from './../classes/user';
 import { CommentsComponent } from './../components/comments/comments.component';
 import { Comment} from './../classes/comment';
 import { Post } from './../classes/post';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../classes/user';
-import { catchError, Observable, map, tap, of, timestamp } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -20,16 +20,7 @@ export class FaceAppService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
-
-  dataRequestUser(){
-    this.http.get<User[]>('http://localhost:3000/posts').subscribe((a: User[]) => {
-      for (let i = 0; i < a.length; i++) {
-        let users: User = new User(a[i].id, a[i].first_name, a[i].last_name);
-        this.user.push(users);
-      }
-    });
-  }
+  constructor(private http: HttpClient, private router: Router) { }
 
   dataRequestPost() {
     this.http.get<Post[]>('http://localhost:3000/posts').subscribe((res: Post[]) => {
@@ -45,15 +36,14 @@ export class FaceAppService {
     return this.posts;
   }
 
-  getUser() {
-    return this.user;
-  }
-
   addPost(value: Post) {
       let user: User = {
         id: 5,
+        username: 'joca',
+        password: '12345',
         first_name: 'Joca',
-        last_name: 'Jacinto'
+        last_name: 'Jacinto',
+        log: false
       }
       value.id = Math.floor(Math.random() * (20 - 5) + 5);
       value.id_user = 5;
@@ -67,8 +57,11 @@ export class FaceAppService {
   addcomments(value: Comment, idpost: number){
     let user: User = {
       id: 6,
+      username: 'pipi_rasgada',
+      password: '12345',
       first_name: 'PiPi',
-      last_name: 'Meia Rasgada'
+      last_name: 'Meia Rasgada',
+      log: false
     }
 
     value.id = Math.floor(Math.random() * (20 - 8) + 8);
@@ -80,7 +73,7 @@ export class FaceAppService {
       post.addComment(value);
     }
 
- 
   }
+
 
 }

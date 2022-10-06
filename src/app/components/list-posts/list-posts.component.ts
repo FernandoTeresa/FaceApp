@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FaceAppService } from '../../services/face-app.service';
 import {Router} from "@angular/router"
@@ -9,7 +10,7 @@ import {Router} from "@angular/router"
 })
 export class ListPostsComponent implements OnInit {
 
-  constructor(public faceappservice:FaceAppService, private router: Router){}
+  constructor(public faceappservice:FaceAppService, public userservice: UserService){}
 
   ngOnInit(): void {
     this.faceappservice.dataRequestPost();
@@ -17,11 +18,8 @@ export class ListPostsComponent implements OnInit {
 
   get(){
     this.faceappservice.getPost;
-    this.faceappservice.getUser;
+    this.userservice.getUser;
   }
 
-  addbutton(){
-    this.router.navigate([]);
-  }
 
 }

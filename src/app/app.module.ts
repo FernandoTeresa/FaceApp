@@ -8,10 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { ListPostsComponent } from './components/list-posts/list-posts.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { CommentsComponent } from './components/comments/comments.component'; 
+import { CommentsComponent } from './components/comments/comments.component';
+import { LoginComponent } from './components/login/login.component'; 
 
 const appRoutes: Routes = [ 
   { path: 'List Posts', component: ListPostsComponent }, 
+  { path: 'Login', component: LoginComponent },
   { path: 'Add Posts', component: PostComponent },
   { path: '**', component: NotFoundComponent },
   { path: 'Add Comments', component: CommentsComponent}
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
     ListPostsComponent,
     NotFoundComponent,
     CommentsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
