@@ -3,15 +3,18 @@
 <form #newuserform="ngForm" (ngSubmit)="adduser(newuserform.value)">
 
     <br>
-    <label>Username:</label><br>
-    <input type="text" id="new_username" placeholder="Username" ngModel>
-    <label>Password:</label><br>
-    <input type="password" id="new_password" placeholder="Password" ngModel>
-    <label>First Name:</label><br>
-    <input type="text" id="new_fname" placeholder="First Name" ngModel>
-    <label>Last Name:</label><br>
-    <input type="text" id="new_lname" placeholder="Last Name" ngModel>
+    <label>Username:</label> &nbsp;
+    <input type="text" id="new_username" placeholder="Username" ngModel name="newusername">
     <br>
-    <input type="submit" value="Submit">
+    <label>Password:</label>&nbsp;&nbsp;&nbsp;
+    <input type="password" id="new_password" placeholder="Password" ngModel name="newpassword">
+    <br>
+    <label>First Name:</label>&nbsp;
+    <input type="text" id="new_fname" placeholder="First Name" ngModel name="newfname">
+    <br>
+    <label>Last Name:</label>&nbsp;
+    <input type="text" id="new_lname" placeholder="Last Name" ngModel name="newlname">
+    <br>
+    <input type="submit" value="Register">
     
 </form>
