@@ -1,7 +1,7 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { User } from './../../classes/user';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { FaceAppService } from 'src/app/services/face-app.service';
 
 @Component({
@@ -11,18 +11,24 @@ import { FaceAppService } from 'src/app/services/face-app.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public faceappservice:FaceAppService, public userservice:UserService) { }
+
+  constructor(public faceappservice:FaceAppService, public userservice:UserService, public router:Router) { }
 
   ngOnInit(): void {
-    this.userservice.dataRequestUser();
-  }
-
-  getuser(){
-    this.userservice.getUser;
+  
   }
 
   login_form(value: User){
     this.userservice.login(value)
+    let x = <HTMLInputElement>document.getElementById("username");
+    x.value = '';
+    let y = <HTMLInputElement>document.getElementById("password");
+    y.value = '';
+  }
+
+  redirect(){
+    console.log('entrou fdx');
+    this.router.navigate(['/register']);
   }
 
 }

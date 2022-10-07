@@ -9,14 +9,16 @@ import { ListPostsComponent } from './components/list-posts/list-posts.component
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CommentsComponent } from './components/comments/comments.component';
-import { LoginComponent } from './components/login/login.component'; 
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component'; 
 
 const appRoutes: Routes = [ 
   { path: 'List Posts', component: ListPostsComponent }, 
   { path: 'Login', component: LoginComponent },
   { path: 'Add Posts', component: PostComponent },
   { path: '**', component: NotFoundComponent },
-  { path: 'Add Comments', component: CommentsComponent}
+  { path: 'Add Comments', component: CommentsComponent},
+  { path: 'Register', component: RegisterComponent}
 ];  
 
 @NgModule({
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
     NotFoundComponent,
     CommentsComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

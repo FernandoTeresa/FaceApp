@@ -1,14 +1,17 @@
-<router-outlet></router-outlet>
+<div style="display: flex;">
+    <form #loginForm="ngForm" (ngSubmit)="login_form(loginForm.value)">
+        <br>
+        <label>Username:</label><br>
+        <input id="username" type="text" placeholder="Username" name="username" ngModel>
+        <br>
+        <label>password:</label><br>
+        <input id="password" type="password" placeholder="Password" name="password" ngModel>
+        <br>
+        <input type="submit" value="Submit">
+        
+    </form>
+</div>
+<app-register></app-register>
 
-<form #loginForm="ngForm" (ngSubmit)="login_form(loginForm.value)">
 
-    <br>
-    <label>Username:</label><br>
-    <input id="username" type="text" placeholder="Username" name="username" ngModel>
-    <br>
-    <label>password:</label><br>
-    <input id="password" type="password" placeholder="Password" name="password" ngModel>
-    <br>
-    <input type="submit" value="Submit">
-    
-</form>
+

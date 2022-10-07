@@ -17,7 +17,7 @@ export class Post implements IPost{
         this.content = content;
         this.date = date;
         this.id_user = id_user;
-        this.user = new User(user.id, user.username, user.password, user.first_name, user.last_name, user.log);
+        this.user = new User(user.id, user.username, user.password, user.first_name, user.last_name);
         for(let i=0;i<comments.length;i++){
             let a = comments[i];
             let b = new Comment(a.id,a.content,a.date,a.id_post,a.id_user,a.user);

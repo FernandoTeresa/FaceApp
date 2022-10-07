@@ -1,3 +1,4 @@
+import { User } from './../../classes/user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FaceAppService } from '../../services/face-app.service';
@@ -10,16 +11,19 @@ import {Router} from "@angular/router"
 })
 export class ListPostsComponent implements OnInit {
 
-  constructor(public faceappservice:FaceAppService, public userservice: UserService){}
+  constructor(public faceappservice:FaceAppService, public userservice: UserService, private router: Router){}
 
   ngOnInit(): void {
-    this.faceappservice.dataRequestPost();
+    if (this.user?.username){
+      this.faceappservice.dataRequestPost();
+    }else{
+      this.router.navigate(['']);
+    }
   }
 
-  get(){
-    this.faceappservice.getPost;
-    this.userservice.getUser;
+  get user():User|null{
+   
+    return this.userservice.user;
   }
-
 
 }

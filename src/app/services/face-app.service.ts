@@ -40,11 +40,11 @@ export class FaceAppService {
       let user: User = {
         id: 5,
         username: 'joca',
-        password: '12345',
+        password: '',
         first_name: 'Joca',
         last_name: 'Jacinto',
-        log: false
       }
+      
       value.id = Math.floor(Math.random() * (20 - 5) + 5);
       value.id_user = 5;
       value.date = new Date()
@@ -58,10 +58,9 @@ export class FaceAppService {
     let user: User = {
       id: 6,
       username: 'pipi_rasgada',
-      password: '12345',
+      password: '',
       first_name: 'PiPi',
       last_name: 'Meia Rasgada',
-      log: false
     }
 
     value.id = Math.floor(Math.random() * (20 - 8) + 8);
