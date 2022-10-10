@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   redirect(){
-    console.log('entrou fdx');
     this.router.navigate(['/register']);
   }
 

@@ -16,7 +16,22 @@ export class RegisterComponent implements OnInit {
   }
 
   adduser(values:User){
-    this.userservice.addUser(values);
+    let user = <HTMLInputElement>document.getElementById("new_username");
+    let pass = <HTMLInputElement>document.getElementById("new_password");
+    if ((user.value != '') && (pass.value != '')){ 
+      this.userservice.addUser(values);
+      this.router.navigate(['']);
+    }else{
+      alert('Invalid Username or Password');
+    }
+    let x = <HTMLInputElement>document.getElementById("new_username");
+    x.value = '';
+    let y = <HTMLInputElement>document.getElementById("new_password");
+    y.value = '';
+    let z = <HTMLInputElement>document.getElementById("new_fname");
+    z.value = '';
+    let h = <HTMLInputElement>document.getElementById("new_lname");
+    h.value = '';
   }
 
 

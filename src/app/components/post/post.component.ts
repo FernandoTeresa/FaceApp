@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/classes/post';
+import { User } from 'src/app/classes/user';
 import { FaceAppService } from 'src/app/services/face-app.service';
 
 

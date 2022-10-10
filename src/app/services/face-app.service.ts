@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { User } from './../classes/user';
 import { CommentsComponent } from './../components/comments/comments.component';
 import { Comment} from './../classes/comment';
@@ -20,7 +21,7 @@ export class FaceAppService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public userservice:UserService) { }
 
   dataRequestPost() {
     this.http.get<Post[]>('http://localhost:3000/posts').subscribe((res: Post[]) => {
@@ -37,21 +38,43 @@ export class FaceAppService {
   }
 
   addPost(value: Post) {
-      let user: User = {
-        id: 5,
-        username: 'joca',
-        password: '',
-        first_name: 'Joca',
-        last_name: 'Jacinto',
-      }
-      
-      value.id = Math.floor(Math.random() * (20 - 5) + 5);
-      value.id_user = 5;
-      value.date = new Date()
-      value.comments = [];
-      
-      let post: Post = new Post(value.id, value.title, value.content, value.date, value.id_user, user, value.comments);
+    let iduser = this.userservice.user?.id || null;
+    if (iduser === null){
+      alert('ERROR!! you have to be log');
+      this.router.navigate(['']);
+      return;
+    }
+    value.id_user= iduser;
+    console.log(value);
+    this.http.post<Post>('http://localhost:3000/addNewPosts', value).subscribe((res:Post)=>{
+      console.log(res);
+      res.comments = [];
+      let post = new Post(res.id, res.title, res.content, res.date, res.id_user, res.user, value.comments);
       this.posts.push(post);
+    },(err) => {
+
+      switch(err.status){
+        case 400:
+          alert('ERROR!! Bad Request');
+          break;
+        case 401:
+          alert('ERROR!! Unauthorized');
+          break;
+        case 403:
+          alert('ERROR!! Forbidden');
+          break;
+        case 404:
+          alert('ERROR!! Not Found');
+          break;
+        case 500:
+          alert('ERROR!! Server Error');
+          break;
+        default:
+          alert ('Unknow Error!!');
+          break;
+      }
+    });
+   
   }
 
   addcomments(value: Comment, idpost: number){
