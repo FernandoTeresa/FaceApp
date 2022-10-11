@@ -49,10 +49,11 @@ export class UserService {
   }
 
   login(data: User){
-    console.log(data);
     this.http.post<User>('http://localhost:3000/login',data).subscribe((res:User)=>{
       this.user=new User(res.id, res.username, res.password,res.first_name, res.last_name);
-      this.router.navigate(['/list-posts']);
+      this.router.navigate(['/']);
+      let user = JSON.stringify(this.user);
+      localStorage.setItem('user', user);
     }, (err) => {
 
       switch(err.status){

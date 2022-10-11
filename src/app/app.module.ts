@@ -10,17 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component'; 
-
-const appRoutes: Routes = [ 
-  { path: 'List Posts', component: ListPostsComponent }, 
-  { path: 'Login', component: LoginComponent },
-  { path: 'Add Posts', component: PostComponent },
-  { path: '**', component: NotFoundComponent },
-  { path: 'Add Comments', component: CommentsComponent},
-  { path: 'Register', component: RegisterComponent}
-];  
-
+import { RegisterComponent } from './components/register/register.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { PostsidComponent } from './components/postsid/postsid.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +22,14 @@ const appRoutes: Routes = [
     CommentsComponent,
     LoginComponent,
     RegisterComponent,
+    NavbarComponent,
+    PostsidComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule
   ],
   providers: [AppComponent, ListPostsComponent, PostComponent, NotFoundComponent],
   bootstrap: [AppComponent]

@@ -11,9 +11,14 @@ import {Router} from "@angular/router"
 })
 export class ListPostsComponent implements OnInit {
 
-  constructor(public faceappservice:FaceAppService, public userservice: UserService, private router: Router){}
+  
+
+  constructor(public faceappservice:FaceAppService, public userservice: UserService, private router: Router){
+    
+  }
 
   ngOnInit(): void {
+
     if (this.user?.username){
       this.faceappservice.dataRequestPost();
     }else{

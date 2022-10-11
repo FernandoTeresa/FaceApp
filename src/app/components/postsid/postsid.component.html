@@ -1,5 +1,7 @@
+
 <div class="container">
-    <div *ngFor="let post of faceappservice.posts">
+
+    <div *ngFor="let post of faceappservice.postsid">
         <div>
 
             <div class="posts">
@@ -25,9 +27,7 @@
                 </div>
                 <div style="display: flex; margin: 10px;">
                     <div style="width: 60%;"></div>
-                    <app-comments [postId]='post.id' *ngIf="this.userservice.user" ></app-comments>
                 </div>
         </div>
     </div>
-    <app-post *ngIf="this.userservice.user"></app-post>
 </div>

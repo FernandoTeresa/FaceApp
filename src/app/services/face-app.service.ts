@@ -4,7 +4,7 @@ import { CommentsComponent } from './../components/comments/comments.component';
 import { Comment} from './../classes/comment';
 import { Post } from './../classes/post';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
@@ -17,6 +17,8 @@ export class FaceAppService {
   posts: Post[] = [];
   comments: Comment[] = [];
 
+  postsid: Post[] = [];
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -24,7 +26,7 @@ export class FaceAppService {
   constructor(private http: HttpClient, private router: Router, public userservice:UserService) { }
 
   dataRequestPost() {
-    this.http.get<Post[]>('http://localhost:3000/posts').subscribe((res: Post[]) => {
+    this.http.get<Post[]>('http://localhost:3000/listPost').subscribe((res: Post[]) => {
       for (let i = 0; i < res.length; i++) {
         let a = res[i];
         let post: Post = new Post(a.id, a.title, a.content, new Date(a.date), a.id_user, a.user, a.comments);
@@ -76,6 +78,20 @@ export class FaceAppService {
     });
    
   }
+
+
+  getPostsUser(){
+    this.postsid = []
+    this.http.get<Post[]>('http://localhost:3000/listPosts/'+this.userservice.user?.id).subscribe((res: Post[]) => {
+    
+    for (let i=0; i<res.length;i++){
+      let post = new Post(res[i].id, res[i].title, res[i].content, res[i].date, res[i].id_user, res[i].user, res[i].comments);
+      this.postsid.push(post);
+    }
+    });
+  }
+
+
 
   addcomments(value: Comment, idpost: number){
     let user: User = {

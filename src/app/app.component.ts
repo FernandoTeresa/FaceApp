@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent{
   title = 'FaceApp';
 
-  constructor(){}
+  constructor(public userservice: UserService, public router:Router){}
 
   ngOnInit(): void {
+
+    let log_obj = JSON.parse(localStorage.getItem('user') || '{}');
+    
+    if (log_obj === "" || log_obj === null){
+      
+      this.router.navigate(['/login']);
+    }else{
+      this.userservice.user = log_obj;
+      this.router.navigate(['/']);
+    }
 
   }
 

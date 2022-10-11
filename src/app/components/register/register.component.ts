@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     let pass = <HTMLInputElement>document.getElementById("new_password");
     if ((user.value != '') && (pass.value != '')){ 
       this.userservice.addUser(values);
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }else{
       alert('Invalid Username or Password');
     }
