@@ -17,8 +17,11 @@ export class ListPostsComponent implements OnInit {
     
   }
 
+  // uma funçao callback que é invocada imediatamente quando o componente é chamado
   ngOnInit(): void {
 
+    //se existe username no objeto user chama a funçao dataRequestPost do serviço faceapp
+    // senao vai enviar para a pagina principal
     if (this.user?.username){
       this.faceappservice.dataRequestPost();
     }else{
@@ -26,8 +29,10 @@ export class ListPostsComponent implements OnInit {
     }
   }
 
+  // get cria uma propriedade dum objeto a uma função
+
+  // cria uma proprieda user do tipo User 
   get user():User|null{
-   
     return this.userservice.user;
   }
 

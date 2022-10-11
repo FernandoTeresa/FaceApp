@@ -15,8 +15,12 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //a funçao addcomment recebe como parametro o objeto value do tipo Comment
   addcomment(value: Comment){
+    //vai chamar a função addcomments do serviço faceapp e envia como o parametro o objeto value 
+    //e o postId do post em que está a fazer o comentario
     this.faceappservice.addcomments(value, this.postId);
+    //depois de enviar na funçao os parametros limpa o campo do formulario do comentario
     let x = <HTMLInputElement>document.getElementById("new_comments");
     x.value = '';
   }
