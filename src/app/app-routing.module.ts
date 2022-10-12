@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-
+// cria as rotas da aplicação 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: '', component: ListPostsComponent },

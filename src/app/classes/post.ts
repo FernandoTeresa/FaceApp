@@ -25,8 +25,11 @@ export class Post implements IPost{
         }
     }
     
+    //recebe como argumento o objeto comment do tipo Comment
     addComment(comment:Comment){
+        //é populado o objeto a com as propriedades do objeto que veio como argumento
         let a = new Comment(comment.id,comment.content,comment.date,this.id,comment.id_user,comment.user);
+        //guarda o objeto a no array de objetos comments
         this.comments.push(a);
     }
 

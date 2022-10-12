@@ -12,6 +12,7 @@
                     <div> date: {{post.date}} </div>
                     <div> author: {{post.user.first_name}} {{post.user.last_name}} </div>
                 </div>
+                <button type="button" (click)="this.remove(post.id)" *ngIf="this.userservice.user && post.id_user === this.user?.id">remove</button>
             </div>
 
                 <div *ngFor="let item of post.comments" style="display: flex; margin: 10px;">

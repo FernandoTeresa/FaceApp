@@ -1,3 +1,4 @@
+import { Post } from 'src/app/classes/post';
 import { User } from './../../classes/user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -34,6 +35,11 @@ export class ListPostsComponent implements OnInit {
   // cria uma proprieda user do tipo User 
   get user():User|null{
     return this.userservice.user;
+  }
+
+  remove(postId:number){
+    console.log(postId)
+    this.faceappservice.removePost(postId);
   }
 
 }
