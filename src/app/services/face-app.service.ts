@@ -6,6 +6,7 @@ import { Post } from './../classes/post';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CommaExpr } from '@angular/compiler';
 
 
 @Injectable({
@@ -22,6 +23,15 @@ export class FaceAppService {
   //cria o array de objetos postid do tipo Post, inicializado a vazio
   postsid: Post[] = [];
 
+  private _comment: Comment | null = null;
+  public get comment(): Comment | null {
+    return this._comment;
+  }
+  public set comment(value: Comment | null) {
+    this._comment = value;
+  }
+
+
   constructor(private http: HttpClient, private router: Router, public userservice:UserService) { }
 
   dataRequestPost() {
@@ -30,13 +40,14 @@ export class FaceAppService {
     this.http.get<Post[]>('http://localhost:3000/listPost').subscribe((res: Post[]) => {
       // vai iterar o res em todos os indices que possui
       this.posts= []
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < res.length; i++) { 
         //declarei uma variavel com o res[i] para facilitar e melhorar a programaçao e o entendimento do codigo
         let a = res[i];
         //popular o objecto post do tipo Post
         let post: Post = new Post(a.id, a.title, a.content, new Date(a.date), a.id_user, a.user, a.comments);
         //vai guardar o objeto no array de objetos posts
         this.posts.push(post);
+     
       }
     });
   }
@@ -105,8 +116,7 @@ export class FaceAppService {
     }
 
     let posts = this.getPost();
-    console.log(idPost);
-    
+    console.log(posts);
     this.http.post<Post>('http://localhost:3000/removePost/'+idPost, posts).subscribe((res:Post)=>{
       this.dataRequestPost()
     },(err) => {
@@ -132,8 +142,8 @@ export class FaceAppService {
       }
     });
 
-
   }
+
   getPostsUser(){
     //inicializa o objeto como vazio
     this.postsid = []
@@ -154,27 +164,87 @@ export class FaceAppService {
 
   //recebe como argumentos o objeto value do tipo Comment e uma variavel idpost do tipo number
   addcomments(value: Comment, idpost: number){
-    //declarado um objeto user do tipo User e as suas propriedas preenchidas
-    let user: User = {
-      id: 6,
-      username: 'pipi_rasgada',
-      password: '',
-      first_name: 'PiPi',
-      last_name: 'Meia Rasgada',
+
+    let local_user = localStorage.getItem('user');
+
+    if (local_user != null){
+      local_user = JSON.parse(local_user);
     }
-    //vai gerar um numero inteiro de 8 a 20 e guarda esse valor em value.id para simular um id do comentario
-    value.id = Math.floor(Math.random() * (20 - 8) + 8);
-    // vai guardar esse valor em value.id_user para simular o id do utilizador desse comentario
-    value.id_user = 6;
-    // vai guardar a data e hora atual em value.date
+
+      console.log();
+    
+    let iduser = this.userservice.user?.id || null;
+
+    if (iduser === null){
+      alert('ERROR!! you have to be log');
+      this.router.navigate(['']);
+      return;
+    }
+
+    if (local_user === null){
+      alert('ERROR!! you have to be log');
+      this.router.navigate(['']);
+      return;
+    }
+
+    value.id_user = iduser;
+    value.id_post = idpost
     value.date = new Date();
-    //vai guardar o objeto user antes declarado na propriedade .user do objeto value
-    value.user = user;
-    //vai guardar na variavel post a procura no array de objetos em que coincida o id dos posts com o idpost que veio como argumento
-    let post = this.posts.find(item => item.id === idpost);
-    //se a variavel post tiver dados chama o metodo addcoment e envia como argumento o value
-    if (post != undefined){
-      post.addComment(value);
-    }
+    
+    console.log(local_user);
+
+    this.http.post<Comment>('http://localhost:3000/addNewComment', value).subscribe((res:Comment)=>{
+      // é populado o objeto post do tipo Post
+      //guarda o objeto post no array de objetos posts
+      this.dataRequestPost()
+
+      //se houver um erro no pedido fazer o tratamento para o tipo do erro
+    },(err) => {
+
+      //no erro é devolvido o status e cada tipo de erro o alert para esse mesmo
+      switch(err.status){
+        case 400:
+          alert('ERROR!! Bad Request');
+          break;
+        case 401:
+          alert('ERROR!! Unauthorized');
+          break;
+        case 403:
+          alert('ERROR!! Forbidden');
+          break;
+        case 404:
+          alert('ERROR!! Not Found');
+          break;
+        case 500:
+          alert('ERROR!! Server Error');
+          break;
+        default:
+          alert ('Unknow Error!!');
+          break;
+      }
+    });
+    
+    // //declarado um objeto user do tipo User e as suas propriedas preenchidas
+    // let user: User = {
+    //   id: 6,
+    //   username: 'pipi_rasgada',
+    //   password: '',
+    //   first_name: 'PiPi',
+    //   last_name: 'Meia Rasgada',
+    // }
+    // //vai gerar um numero inteiro de 8 a 20 e guarda esse valor em value.id para simular um id do comentario
+    // value.id = Math.floor(Math.random() * (20 - 8) + 8);
+    // // vai guardar esse valor em value.id_user para simular o id do utilizador desse comentario
+    // value.id_user = 6;
+    // // vai guardar a data e hora atual em value.date
+    // value.date = new Date();
+    // //vai guardar o objeto user antes declarado na propriedade .user do objeto value
+    // value.user = user;
+    // //vai guardar na variavel post a procura no array de objetos em que coincida o id dos posts com o idpost que veio como argumento
+    // let post = this.posts.find(item => item.id === idpost);
+    // //se a variavel post tiver dados chama o metodo addcoment e envia como argumento o value
+    // if (post != undefined){
+    //   post.addComment(value);
+    // }
   }
 }
