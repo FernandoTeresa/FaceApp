@@ -28,7 +28,7 @@ export class UserService {
     //faz um pedido get ao url e envia no body o parametro do objeto value 
     //e guarda os dados no array de objectos do tipo Post 
     //para começar o pedido utilizamos o subscribe, guarda a info no array res do tipo Post
-    this.http.post<User>('http://localhost:3000/registerUser',value).subscribe((res:User)=>{
+    this.http.post<User>('http://localhost:8000/user',value).subscribe((res:User)=>{
       //vai popular o objeto user com as propriedades que vai enviar
       this.user = new User(res.id,res.username,res.password, res.first_name, res.last_name);
       //se houver erro sera tratado para cada caso e sera enviado um alert que tipo de erro foi 
@@ -61,9 +61,9 @@ export class UserService {
   login(data: User){
     // faz um pedido post ao endpoint e envia como parametros no body o objeto data
     //para começar o pedido utilizamos o subscribe, guarda a info no objeto res do tipo User
-    this.http.post<User>('http://localhost:3000/login',data).subscribe((res:User)=>{
+    this.http.post('http://localhost:8000/login',data).subscribe((res:any)=>{
       //vai popular o objeto user com as propriedades enviadas
-      this.user=new User(res.id, res.username, res.password,res.first_name, res.last_name);
+      this.user=new User(res.user.id, res.user.username, res.user.password,res.user.first_name, res.user.last_name);
       //depois de enviado retorna para a pagina inicial
       this.router.navigate(['/']);
       // converte o objeto this.user em uma string para a variavel user

@@ -38,7 +38,6 @@ export class ListPostsComponent implements OnInit {
   }
 
   remove(postId:number){
-    console.log(postId)
     this.faceappservice.removePost(postId);
   }
 
