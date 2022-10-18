@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
     //poem o objeto user como nulo
     this.userservice.user = null;
     // depois redirecciona para a pagina inicial
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   // redirecciona para a pagina dos posts

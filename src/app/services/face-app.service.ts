@@ -34,17 +34,23 @@ export class FaceAppService {
 
   constructor(private http: HttpClient, private router: Router, public userservice:UserService) { }
 
+
+
   dataRequestPost() {
+
+
+    console.log(HttpHeaders)
+
     //faz um pedido get ao url e guarda os dados no array de objectos do tipo Post
     //para começar o pedido utilizamos o subscribe, guarda a info no res
-    this.http.get<Post[]>('http://localhost:8000/posts').subscribe((res: Post[]) => {
+    this.http.get<Post[]>('http://localhost:85/posts').subscribe((res: Post[]) => {
       // vai iterar o res em todos os indices que possui
       this.posts= []
+      
       for (let i = 0; i < res.length; i++) { 
         //declarei uma variavel com o res[i] para facilitar e melhorar a programaçao e o entendimento do codigo
         let a = res[i];
         //popular o objecto post do tipo Post
-        console.log(a)
         let post: Post = new Post(a.id, a.title, a.content, new Date(a.date), a.id_user, a.user, a.comments);
         //vai guardar o objeto no array de objetos posts
         this.posts.push(post);
@@ -74,7 +80,7 @@ export class FaceAppService {
     //faz um pedido post ao endpoint com expectativa de o retorno ser do tipo Postcom o objeto  
     //value como parametro (no body) e guarda os dados no objecto res do tipo Post
     //para começar o pedido utilizamos o subscribe, guarda a info no res
-    this.http.post<Post>('http://localhost:8000/post', value).subscribe((res:Post)=>{
+    this.http.post<Post>('http://localhost:85/post', value).subscribe((res:Post)=>{
       // é populado o objeto post do tipo Post
       //guarda o objeto post no array de objetos posts
       this.dataRequestPost()
@@ -118,7 +124,7 @@ export class FaceAppService {
 
     let posts = this.getPost();
     console.log(posts);
-    this.http.delete<Post>('http://localhost:8000/post/'+idPost).subscribe((res:Post)=>{
+    this.http.delete<Post>('http://localhost:85/post/'+idPost).subscribe((res:Post)=>{
       this.dataRequestPost()
     },(err) => {
       switch(err.status){
@@ -154,7 +160,7 @@ export class FaceAppService {
     //faz um pedido get ao url com o parametro do id do user que esta logado que sera enviado no body
     //e guarda os dados no array de objectos do tipo Post
     //para começar o pedido utilizamos o subscribe, guarda a info no array res do tipo Post
-    this.http.get<Post[]>('http://localhost:8000/posts/user/'+iduser).subscribe((res: Post[]) => {
+    this.http.get<Post[]>('http://localhost:85/posts/user/'+iduser).subscribe((res: Post[]) => {
     
     //vai iterar o array de objetos ate ao ultimo indice do array
     for (let i=0; i<res.length;i++){
@@ -195,7 +201,7 @@ export class FaceAppService {
     
     console.log(local_user);
 
-    this.http.post<Comment>('http://localhost:8000/post/'+idpost+'/comment', value).subscribe((res:Comment)=>{
+    this.http.post<Comment>('http://localhost:85/post/'+idpost+'/comment', value).subscribe((res:Comment)=>{
       // é populado o objeto post do tipo Post
       //guarda o objeto post no array de objetos posts
       this.dataRequestPost()
