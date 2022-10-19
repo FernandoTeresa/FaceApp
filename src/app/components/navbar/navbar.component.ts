@@ -33,9 +33,9 @@ export class NavbarComponent implements OnInit {
   
   logout(){
     // apaga do localstorage o conteudo
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     //poem o objeto user como nulo
-    this.userservice.user = null;
+   // this.userservice.user = null;
     // depois redirecciona para a pagina inicial
     this.router.navigate(['/login']);
   }

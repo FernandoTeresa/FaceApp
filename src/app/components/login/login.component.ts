@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
 
   //recebe os dados do formulario e envia para a função login no userservice
   login_form(value: User){
-    this.userservice.login(value)
+
+    this.userservice.login(value);
+
+
     //depois de enviar os dados limpa os campos 
     let x = <HTMLInputElement>document.getElementById("username");
     x.value = '';

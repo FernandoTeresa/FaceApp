@@ -23,7 +23,13 @@ export class RegisterComponent implements OnInit {
     //se o valor da variavel user e a variavel pass se estiver vazio manda um alert a informar do erro
     // se nao estiver vazio chama o metodo addUser e envia por argumento o conteudo do objecto do tipo User
     // e depois disso rederecciona para a pagina principal
-    if ((user.value != '') && (pass.value != '')){ 
+    let repeat_pass = <HTMLInputElement>document.getElementById("repeat_password");
+
+    if (pass.value != repeat_pass.value){
+          alert("Passwords dont match");
+    }
+
+    if ((user.value != '') && (pass.value != '') && (repeat_pass.value != '')){ 
       this.userservice.addUser(values);
       this.router.navigate(['/']);
     }else{
@@ -34,10 +40,14 @@ export class RegisterComponent implements OnInit {
     x.value = '';
     let y = <HTMLInputElement>document.getElementById("new_password");
     y.value = '';
+    let h = <HTMLInputElement>document.getElementById("repeat_password");
+    h.value = '';
     let z = <HTMLInputElement>document.getElementById("new_fname");
     z.value = '';
-    let h = <HTMLInputElement>document.getElementById("new_lname");
-    h.value = '';
+    let u = <HTMLInputElement>document.getElementById("new_lname");
+    u.value = '';
+    let b = <HTMLInputElement>document.getElementById("email");
+    b.value = '';
   }
 
 

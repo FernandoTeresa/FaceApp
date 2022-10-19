@@ -39,20 +39,14 @@ export class FaceAppService {
   dataRequestPost() {
 
 
-    console.log(HttpHeaders)
-
-    //faz um pedido get ao url e guarda os dados no array de objectos do tipo Post
-    //para começar o pedido utilizamos o subscribe, guarda a info no res
     this.http.get<Post[]>('http://localhost:85/posts').subscribe((res: Post[]) => {
-      // vai iterar o res em todos os indices que possui
+
       this.posts= []
       
       for (let i = 0; i < res.length; i++) { 
-        //declarei uma variavel com o res[i] para facilitar e melhorar a programaçao e o entendimento do codigo
         let a = res[i];
-        //popular o objecto post do tipo Post
+
         let post: Post = new Post(a.id, a.title, a.content, new Date(a.date), a.id_user, a.user, a.comments);
-        //vai guardar o objeto no array de objetos posts
         this.posts.push(post);
      
       }
@@ -123,7 +117,6 @@ export class FaceAppService {
     }
 
     let posts = this.getPost();
-    console.log(posts);
     this.http.delete<Post>('http://localhost:85/post/'+idPost).subscribe((res:Post)=>{
       this.dataRequestPost()
     },(err) => {
@@ -153,23 +146,28 @@ export class FaceAppService {
 
   getPostsUser(){
     //inicializa o objeto como vazio
-    this.postsid = []
+    //this.postsid = []
+
+
     let iduser = this.userservice.user?.id;
-    
-    console.log(iduser);
+
+    this.http.get('http://localhost:85/posts/user/'+iduser);
+
+
+
     //faz um pedido get ao url com o parametro do id do user que esta logado que sera enviado no body
     //e guarda os dados no array de objectos do tipo Post
     //para começar o pedido utilizamos o subscribe, guarda a info no array res do tipo Post
-    this.http.get<Post[]>('http://localhost:85/posts/user/'+iduser).subscribe((res: Post[]) => {
+    // this.http.get<Post[]>('http://localhost:85/posts/user/'+iduser).subscribe((res: Post[]) => {
     
-    //vai iterar o array de objetos ate ao ultimo indice do array
-    for (let i=0; i<res.length;i++){
-      // vai popular o objeto post para cada indice
-      let post = new Post(res[i].id, res[i].title, res[i].content, res[i].date, res[i].id_user, res[i].user, res[i].comments);
-      // guarda o objeto post no array de objetos postsid
-      this.postsid.push(post);
-    }
-    });
+    // //vai iterar o array de objetos ate ao ultimo indice do array
+    // for (let i=0; i<res.length;i++){
+    //   // vai popular o objeto post para cada indice
+    //   let post = new Post(res[i].id, res[i].title, res[i].content, res[i].date, res[i].id_user, res[i].user, res[i].comments);
+    //   // guarda o objeto post no array de objetos postsid
+    //   this.postsid.push(post);
+    // }
+    // });
   }
 
   //recebe como argumentos o objeto value do tipo Comment e uma variavel idpost do tipo number
@@ -198,8 +196,6 @@ export class FaceAppService {
     value.id_user = iduser;
     value.id_post = idpost
     value.date = new Date();
-    
-    console.log(local_user);
 
     this.http.post<Comment>('http://localhost:85/post/'+idpost+'/comment', value).subscribe((res:Comment)=>{
       // é populado o objeto post do tipo Post

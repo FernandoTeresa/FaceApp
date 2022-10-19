@@ -1,3 +1,4 @@
+import { IAuthToken } from './../../interfaces/i-authToken';
 import { Post } from 'src/app/classes/post';
 import { User } from './../../classes/user';
 import { UserService } from './../../services/user.service';
@@ -23,11 +24,13 @@ export class ListPostsComponent implements OnInit {
 
     //se existe username no objeto user chama a funçao dataRequestPost do serviço faceapp
     // senao vai enviar para a pagina principal
-    if (this.user?.username){
-      this.faceappservice.dataRequestPost();
-    }else{
-      this.router.navigate(['']);
-    }
+
+
+    // if (this.user?.username){
+       this.faceappservice.dataRequestPost();
+    // }else{
+    //   this.router.navigate(['']);
+    // }
   }
 
   // get cria uma propriedade dum objeto a uma função
@@ -36,6 +39,7 @@ export class ListPostsComponent implements OnInit {
   get user():User|null{
     return this.userservice.user;
   }
+
 
   remove(postId:number){
     this.faceappservice.removePost(postId);
