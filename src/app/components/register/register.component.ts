@@ -16,38 +16,30 @@ export class RegisterComponent implements OnInit {
   }
 
   adduser(values:User){
-    //guarda numa variavel o conteudo do elemento com o id new_username
+
     let user = <HTMLInputElement>document.getElementById("new_username");
-    //guarda numa variavel o conteudo do elemento com o id new_password
     let pass = <HTMLInputElement>document.getElementById("new_password");
-    //se o valor da variavel user e a variavel pass se estiver vazio manda um alert a informar do erro
-    // se nao estiver vazio chama o metodo addUser e envia por argumento o conteudo do objecto do tipo User
-    // e depois disso rederecciona para a pagina principal
     let repeat_pass = <HTMLInputElement>document.getElementById("repeat_password");
+    let fname = <HTMLInputElement>document.getElementById("first_name");
+    let lname = <HTMLInputElement>document.getElementById("last_name");
+    let email = <HTMLInputElement>document.getElementById("email");
 
-    if (pass.value != repeat_pass.value){
-          alert("Passwords dont match");
-    }
 
-    if ((user.value != '') && (pass.value != '') && (repeat_pass.value != '')){ 
-      this.userservice.addUser(values);
-      this.router.navigate(['/']);
+    if ((user?.value != '') && (pass?.value != '') && (repeat_pass?.value != '') && (fname?.value != '') && (lname?.value != '') && (email?.value != '')){ 
+      
+      if (pass.value != repeat_pass.value){
+            alert("Passwords dont match");
+            pass.value= '';
+            repeat_pass.value = '';  
+
+      }else{
+        this.userservice.addUser(values);
+        this.router.navigate(['/login']);
+      }
     }else{
       alert('Invalid Username or Password');
     }
-    //depois de enviado, os campos são apagados
-    let x = <HTMLInputElement>document.getElementById("new_username");
-    x.value = '';
-    let y = <HTMLInputElement>document.getElementById("new_password");
-    y.value = '';
-    let h = <HTMLInputElement>document.getElementById("repeat_password");
-    h.value = '';
-    let z = <HTMLInputElement>document.getElementById("new_fname");
-    z.value = '';
-    let u = <HTMLInputElement>document.getElementById("new_lname");
-    u.value = '';
-    let b = <HTMLInputElement>document.getElementById("email");
-    b.value = '';
+  
   }
 
 

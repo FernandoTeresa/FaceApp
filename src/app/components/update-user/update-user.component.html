@@ -1,0 +1,30 @@
+<form #updateform="ngForm" (ngSubmit)="updateuser(updateform.value)">
+    <ul class="form-style-1">
+
+        <li>
+
+            <label>Username: {{this.userservice.setUser().username}}</label>
+        </li>
+
+        <li>
+            <label>Password</label>
+            <input type="password" name="password" class="field-divided" placeholder="New Password" value="" ngModel>
+            <input type="password" name="raw_password" class="field-divided" placeholder="Repeat New Password" ngModel>
+            
+        </li>
+
+
+        <li>
+            <label>Full Name</label>
+            <input type="text" name="first_name" class="field-divided" placeholder="First Name" [(ngModel)]="this.userservice.setUser().first_name"/>
+            <input type="text" name="last_name" class="field-divided" placeholder="Last Name"[(ngModel)]="this.userservice.setUser().last_name"/>
+        </li>
+        <li>
+            <label>Email: {{this.userservice.setUser().email}} </label>
+        </li>
+       
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+    </form>

@@ -15,34 +15,31 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // redirecciona para a pagina inicial
   home(){
     this.router.navigate(['/']);
   }
 
-  // redirecciona para a pagina do login
   login(){
     this.router.navigate(['/login']);
   }
 
-  // redirecciona para a pagina do registro
   register(){
     this.router.navigate(['/register']);
   }
 
   
   logout(){
-    // apaga do localstorage o conteudo
-    localStorage.removeItem('token');
-    //poem o objeto user como nulo
-   // this.userservice.user = null;
-    // depois redirecciona para a pagina inicial
+    this.userservice.logout();
     this.router.navigate(['/login']);
   }
 
-  // redirecciona para a pagina dos posts
   posts(){
     this.router.navigate(['/posts']);
   }
 
+  profile(){
+    this.router.navigate(['/profile']);
+  }
+
+  
 }

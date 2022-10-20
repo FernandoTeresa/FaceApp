@@ -1,3 +1,4 @@
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { PostsidComponent } from './components/postsid/postsid.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: 'post', component: PostComponent },
   { path: 'register', component: RegisterComponent},
-  { path: 'posts', component: PostsidComponent}
+  { path: 'posts', component: PostsidComponent},
+  { path: 'profile', component: UpdateUserComponent}
 ];
 
 @NgModule({

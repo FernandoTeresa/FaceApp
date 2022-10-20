@@ -5,8 +5,9 @@ export interface IPost {
     id:number;
     title:string;
     content:string;
-    date:Date;
     id_user:number;
     user:User;
     comments:Comment[];
+    create_at?:Date;
+    updated_at?:Date;
 }

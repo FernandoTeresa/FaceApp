@@ -10,9 +10,10 @@
                 <div class="post">{{post.content}}</div>
                 
                 <div class="date-user">
-                    <div> date: {{post.date}} </div>
+                    <div> date: {{(post.updated_at === undefined ? post.create_at :post.updated_at) | date:'short'}} </div>
                     <div> author: {{post.user.first_name}} {{post.user.last_name}} </div>
                 </div>
+                    <button type="button" (click)="this.remove(post.id)" *ngIf="this.userservice.setUser() && post.id_user === this.userservice.setUser().id" >remove</button>
             </div>
 
                 <div *ngFor="let item of post.comments" style="display: flex; margin: 10px;">

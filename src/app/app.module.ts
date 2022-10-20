@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PostsidComponent } from './components/postsid/postsid.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { PostsidComponent } from './components/postsid/postsid.component';
     RegisterComponent,
     NavbarComponent,
     PostsidComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,

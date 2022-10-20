@@ -1,18 +1,23 @@
 import { IAuthToken } from './../interfaces/i-authToken';
 import { JsonPipe } from '@angular/common';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../classes/user';
 import { FaceAppService } from './face-app.service';
 
+
+const Header = {
+  headers: new HttpHeaders({
+    Authorization: 'bearer '+ localStorage.getItem('token'), 
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-
 
   // é criado um objeto do tipo User em privado que pode ser nulo 
   private _user: User | null = null;
@@ -27,13 +32,31 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+
+  setUser(){
+
+    let localUser = localStorage.getItem('user')
+
+    if (localUser != null){
+      return localUser = JSON.parse(localUser);
+    }
+
+  }
+
+
   log(){
     let logon = localStorage.getItem('token');
 
-    if (logon){
-      this.http.post<User>('http://localhost:85/post/token', logon).subscribe((res:User)=>{
+    Header.headers = Header.headers.set('Authorization', 'bearer '+logon);
 
-      console.log(res);
+    if (logon){
+      this.http.get<User>('http://localhost:85/auth/user', Header ).subscribe((res:User)=>{
+     
+      let user = new User(res.id,res.username,res.password,res.first_name, res.last_name, res.email) 
+      
+      let localUser = JSON.stringify(user);
+      localStorage.setItem('user',localUser);
+      
       });
     }else{
       this.router.navigate(['/login']);
@@ -42,9 +65,10 @@ export class UserService {
   }
 
   addUser(value:User){
-    this.http.post<User>('http://localhost:85/user',value).subscribe((res:User)=>{
+    this.http.post<User>('http://localhost:85/user',value, Header).subscribe((res:User)=>{
 
-      this.user = new User(res.id,res.username,res.password, res.first_name, res.last_name);
+      this.user = new User(res.id,res.username, res.password, res.first_name, res.last_name, res.email);
+
     },(err) => {
 
       switch(err.status){
@@ -74,8 +98,7 @@ export class UserService {
   //recebe como parametros o objeto data do tipo User
   login(data: User){
 
-    this.http.post<IAuthToken>('http://localhost:85/login', data).subscribe((res:IAuthToken) => {
-
+    this.http.post<IAuthToken>('http://localhost:85/login', data, Header).subscribe((res:IAuthToken) => {
       if(res.access_token){
         localStorage.setItem('token', res.access_token);
         this.router.navigate(['/']);
@@ -83,6 +106,7 @@ export class UserService {
         this.router.navigate(['/login']);
       }
 
+      this.log();
     },(err)=> {
 
       switch(err.status){
@@ -108,9 +132,41 @@ export class UserService {
     });
   }
 
-  /*
-    falta o update aqui, no componente .ts e fazer um html
-  */
+
+  updateUser(value:User){
+
+    this.http.put<User>('http://localhost:85/user/'+ this.setUser().id, value, Header).subscribe((res:User)=>{    
+
+    },(err) => {
+      switch(err.status){
+        case 400:
+          alert('ERROR!! Bad Request');
+          break;
+        case 401:
+          alert('ERROR!! Unauthorized');
+          break;
+        case 403:
+          alert('ERROR!! Forbidden');
+          break;
+        case 404:
+          alert('ERROR!! Not Found');
+          break;
+        case 500:
+          alert('ERROR!! Server Error');
+          break;
+        default:
+          alert ('Unknow Error!!');
+          break;
+      }
+    })
+
+  }
+
+  logout(){
+    this.http.post('http://localhost:85/logout',Header);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
 
 
 }
