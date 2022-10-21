@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Comment } from './../../classes/comment';
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceAppService } from 'src/app/services/face-app.service';
@@ -18,9 +19,10 @@ export class CommentsComponent implements OnInit {
   
   addcomment(value: Comment){
     
-    this.faceappservice.addcomments(value, this.postId);
+    this.faceappservice.addComments(value, this.postId);
     let x = <HTMLInputElement>document.getElementById("new_comments");
     x.value = '';
   }
+
 
 }

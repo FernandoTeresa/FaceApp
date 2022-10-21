@@ -1,9 +1,7 @@
-<form #commentform="ngForm" (ngSubmit)="addcomment(commentform.value)">
-
+<form #commentform="ngForm" (ngSubmit)="addcomment(commentform.value)" id="formAdd">
     <br>
     <label>Content:</label><br>
     <textarea id="new_comments" placeholder="Seccion of comments" name="content" ngModel style="width: 400px; height: 100px; resize: none;" ></textarea>
     <br>
     <input type="submit" value="Submit">
-    
 </form>

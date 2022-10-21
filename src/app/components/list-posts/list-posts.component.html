@@ -1,5 +1,5 @@
 <div class="container">
-    <!-- vai iterar o objeto posts do serviço faceapp na variavel post -->
+   
     <div *ngFor="let post of faceappservice.posts">
         <div>
            
@@ -15,15 +15,37 @@
                 <button type="button" (click)="this.remove(post.id)" *ngIf="this.userservice.setUser() && post.id_user === this.userservice.setUser().id" >remove</button>
             </div>
 
-                <div *ngFor="let item of post.comments" style="display: flex; margin: 10px;">
-                    <div class="leftcomments"></div>
-                    <div>
-                        <div class="comments">
-                            <div> {{item.content}}</div>
-                            <div> {{item.user.first_name}} {{item.user.last_name}}</div>
-                            <div> {{item.date}}</div>
+            
+                <div *ngFor="let item of post.comments" class="container_comments">
+
+                    <div id="formAdd">
+                        <div>
+                            <div class="comments">
+                                <input type="text" class="input" disabled [(ngModel)]="item.content">
+                                <label>{{item.user.first_name}} {{item.user.last_name}}</label>
+                                <br>
+                                <label>{{(item.updated_at===undefined ? item.created_at : item.updated_at) | date:'short'}}</label>
+                                <br>
+                                <button (click)="updateButton()" class="button" id="button" *ngIf="this.userservice.setUser() && item.id_user === this.userservice.setUser().id">Update</button>
+                            </div>
                         </div>
                     </div>
+
+                    <div id="formUpdate">
+                        <div>
+                            <div class="update"></div>
+                            <form #updateform="ngForm" (ngSubmit)="updateComment(updateform.value, item.id, post.id)">
+                                <input type="text" class="input"  name="input_content" [(ngModel)]="item.content">
+                                <label>{{item.user.first_name}} {{item.user.last_name}}</label>
+                                <br>
+                                <label>{{(item.updated_at===undefined ? item.created_at : item.updated_at) | date:'short'}}</label>
+                                <br>
+                                <input type="submit" value="Update">
+                            </form> 
+                        </div>
+                    </div>
+
+                        
                 </div>
                 <div style="display: flex; margin: 10px;">
                     <div style="width: 60%;"></div>
@@ -33,3 +55,5 @@
     </div>
     <app-post *ngIf="this.userservice.setUser()"></app-post>
 </div>
+
+

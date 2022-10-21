@@ -25,7 +25,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     RegisterComponent,
     NavbarComponent,
     PostsidComponent,
-    UpdateUserComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

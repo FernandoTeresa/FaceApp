@@ -47,10 +47,9 @@ export class FaceAppService {
     this.http.get<Post[]>('http://localhost:85/posts').subscribe((res: Post[]) => {
 
       this.posts= []
-      
+
       for (let i = 0; i < res.length; i++) { 
         let a = res[i];
-
         let post: Post = new Post(a.id, a.title, a.content, a.id_user, a.user, a.comments, a.create_at, a.updated_at);
         this.posts.push(post);
      
@@ -147,25 +146,15 @@ export class FaceAppService {
     this.http.get<Post[]>('http://localhost:85/posts/user/'+iduser, Header).subscribe((res: Post[]) => {
     
     for (let i=0; i<res.length;i++){
-      let b = res[i];
-      let post = new Post(b.id, b.title, b.content, b.id_user, b.user, b.comments,b.create_at, b.updated_at);
+      let res_post = res[i];
+      let post = new Post(res_post.id, res_post.title, res_post.content, res_post.id_user, res_post.user, res_post.comments,res_post.create_at, res_post.updated_at);
       this.postsid.push(post);
-    }
-    });
-
-    this.http.get<Comment[]>('http://localhost:85/posts/user/'+iduser, Header).subscribe((res: Comment[]) => {
-    
-    for (let i=0; i<res.length;i++){
-      let a = res[i];
-      let comment = new Comment(a.id, a.content, a.id_post, a.id_user, a.user, a.updated_at, a.created_at);
-      this.commentsid.push(comment);
     }
     });
 
   }
 
-
-  addcomments(value: Comment, idpost: number){
+  addComments(value: Comment, idpost: number){
 
     let local_user = localStorage.getItem('user');
 
@@ -193,11 +182,9 @@ export class FaceAppService {
     this.http.post<Comment>('http://localhost:85/post/'+idpost+'/comment', value,Header).subscribe((res:Comment)=>{
       
       this.dataRequestPost()
-
       
     },(err) => {
 
-      
       switch(err.status){
         case 400:
           alert('ERROR!! Bad Request');
@@ -220,6 +207,36 @@ export class FaceAppService {
       }
     });
     
-    
   }
+
+  updateComment(value:string, idcomment:number, idpost:number){
+
+    let local_user = localStorage.getItem('user');
+
+    if (local_user != null){
+      local_user = JSON.parse(local_user);
+    }
+
+    let iduser = this.userservice.setUser().id;
+
+    if (iduser === null){
+      alert('ERROR!! you have to be log');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (local_user === null){
+      alert('ERROR!! you have to be log');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // value.id_post = idpost;
+    // value.id_user = iduser;
+    // value.id = idcomment;
+
+    console.log(value)
+
+  }
+
 }

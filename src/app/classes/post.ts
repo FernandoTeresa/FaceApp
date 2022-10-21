@@ -20,18 +20,15 @@ export class Post implements IPost{
         this.user = new User(user.id,user.username, user.password, user.first_name, user.last_name, user.email);
         for(let i=0;i<comments.length;i++){
             let a = comments[i];
-            let b = new Comment(a.id,a.content,a.date,a.id_post,a.id_user,a.user);
+            let b = new Comment(a.id,a.content,a.id_post,a.id_user,a.user,a.updated_at,a.created_at);
             this.comments.push(b);
         }
         this.create_at = create_at;
         this.updated_at = updated_at;
     }
     
-    //recebe como argumento o objeto comment do tipo Comment
     addComment(comment:Comment){
-        //é populado o objeto a com as propriedades do objeto que veio como argumento
-        let a = new Comment(comment.id,comment.content,comment.date,this.id,comment.id_user,comment.user);
-        //guarda o objeto a no array de objetos comments
+        let a = new Comment(comment.id,comment.content,this.id,comment.id_user,comment.user,comment.updated_at, comment.created_at);
         this.comments.push(a);
     }
 

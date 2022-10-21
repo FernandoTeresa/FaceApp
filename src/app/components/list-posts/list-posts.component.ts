@@ -25,7 +25,6 @@ export class ListPostsComponent implements OnInit {
 
   }
 
-
   get user():User|null{
     return this.userservice.setUser();
   }
@@ -33,6 +32,31 @@ export class ListPostsComponent implements OnInit {
 
   remove(postId:number){
     this.faceappservice.removePost(postId);
+  }
+
+  updateButton(){
+
+    let formadd = <HTMLElement>document.getElementById('formAdd');
+
+    let formupdate = <HTMLInputElement>document.getElementById('formUpdate');
+
+    if (formadd.style.display==="none"){
+      formadd.style.display = "block";
+      formupdate.style.display = "none";
+    }else{
+      formadd.style.display = "none";
+      formupdate.style.display = "block";
+    }
+
+
+
+    console.log("jksdbfksdbk")
+  }
+
+  updateComment(value:string, commentId:number, postId:number){
+
+    this.faceappservice.updateComment(value, commentId, postId);
+
   }
 
 }

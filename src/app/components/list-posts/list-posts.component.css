@@ -1,37 +1,58 @@
-.container{
-    margin: auto; 
+.container {
+    margin: auto;
     width: 80%;
-    margin: 30px;
 }
 
-.posts{
+.container_comments {
+    display: flex;
+}
+
+.posts {
     border: 1px solid black;
     margin: 20px;
 }
 
-.title{
+.title {
     padding-left: 20px;
     margin: 5px 0 5px 0;
     text-decoration: underline;
 }
 
-.post{
+.post {
     margin: 15px;
     padding: 10px;
 }
 
-.comments{
+.date-user {
+    padding: 10px;
+}
+
+.input {
+    width: 400px;
+    height: 100px;
+    resize: none;
+    display: block;
+    text-justify: auto;
+    font-size:larger;
+    color: black;
+    border-color:transparent;
+    
+}
+
+#formAdd{
     width: 450px;
-    margin: 15px;
     padding: 10px;
     border: 1px solid black;
-    overflow: auto;
+    margin: 15px;
+    float: right;
 }
 
-.leftcomments{
-    width: 60%;
-}
-
-.date-user{
+#formUpdate{
+    width: 450px;
     padding: 10px;
+    margin: 15px;
+    float: left;
+    border: 1px solid black;
+    display: none;
+    float: left;
 }

@@ -6,11 +6,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../classes/user';
 import { FaceAppService } from './face-app.service';
+import * as moment from 'moment';
 
 
 const Header = {
   headers: new HttpHeaders({
-    Authorization: 'bearer '+ localStorage.getItem('token'), 
+    Authorization: 'bearer '+ localStorage.getItem('token')
   })
 };
 
@@ -19,13 +20,12 @@ const Header = {
 })
 export class UserService {
 
-  // é criado um objeto do tipo User em privado que pode ser nulo 
   private _user: User | null = null;
-  //é criado um metodo get para aceder ao objeto privado
+
   public get user(): User | null {
     return this._user;
   }
-  // é criado um metodo set para conseguir alterar ou adicionar dados no objeto
+
   public set user(value: User | null) {
     this._user = value;
   }
@@ -95,14 +95,20 @@ export class UserService {
 
   }
 
-  //recebe como parametros o objeto data do tipo User
   login(data: User){
 
     this.http.post<IAuthToken>('http://localhost:85/login', data, Header).subscribe((res:IAuthToken) => {
+
+      let date = moment().unix();
+
       if(res.access_token){
         localStorage.setItem('token', res.access_token);
         this.router.navigate(['/']);
       }else{
+        this.router.navigate(['/login']);
+      }
+
+      if (date > res.expires_in){
         this.router.navigate(['/login']);
       }
 
@@ -131,7 +137,6 @@ export class UserService {
       };
     });
   }
-
 
   updateUser(value:User){
 
@@ -167,6 +172,5 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }
-
 
 }
