@@ -33,8 +33,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  posts(){
-    this.router.navigate(['/posts']);
+  posts(id:number){
+    this.router.navigate(['/posts/',id]);
   }
 
   profile(){

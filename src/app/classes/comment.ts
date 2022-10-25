@@ -14,7 +14,7 @@ export class Comment implements IComment{
         this.content=content;
         this.id_post=id_post;
         this.id_user=id_user;
-        this.user=new User(user.id,user.username, user.password ,user.first_name, user.last_name, user.email);
+        this.user=new User(user.id,user.username, user.password ,user.first_name, user.last_name, user.email, user.photo);
         this.created_at = created_at;
         this.updated_at = updated_at;
 

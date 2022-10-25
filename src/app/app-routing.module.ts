@@ -1,5 +1,4 @@
 import { UpdateUserComponent } from './components/update-user/update-user.component';
-import { PostsidComponent } from './components/postsid/postsid.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +8,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 // cria as rotas da aplicação 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
   { path: 'post', component: PostComponent },
   { path: 'register', component: RegisterComponent},
-  { path: 'posts', component: PostsidComponent},
+  { path: 'posts/:id', component: ListPostsComponent},
   { path: 'profile', component: UpdateUserComponent}
 ];
 

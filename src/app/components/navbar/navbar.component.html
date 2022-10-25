@@ -1,12 +1,19 @@
-<div class="nav">
-    <a (click)="home()" >Home</a>
-    <a (click)="posts()" *ngIf="this.userservice.setUser()">Posts</a>
-    <a (click)="login()" *ngIf="!this.userservice.setUser()">Login</a>
-    <a (click)="logout()" *ngIf="this.userservice.setUser()">Logout</a>
-    <a (click)="register()" *ngIf="!this.userservice.setUser()">Register</a>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-2 link-dark" (click)="home()">Home</a></li>
+          <li><a class="nav-link px-2 link-dark" (click)="posts(this.userservice.getUser().id)" *ngIf="this.userservice.getUser()" >Posts</a></li>
+          <li><p class="welcome" *ngIf="this.userservice.getUser()">Welcome {{this.userservice.getUser().first_name}} {{this.userservice.getUser().last_name}}</p></li>
 
-    <span class="welcome" *ngIf="this.userservice.setUser()">Welcome {{this.userservice.setUser().first_name}} {{this.userservice.setUser().last_name}}</span>
+          <li><a class="nav-link px-2 link-dark" (click)="profile()" *ngIf="this.userservice.getUser()">Profile</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-outline-primary me-2" (click)="login()" *ngIf="!this.userservice.getUser()">Login</button>
+          <button type="button" class="btn btn-outline-primary me-2" (click)="logout()" *ngIf="this.userservice.getUser()">Logout</button>
+          <button type="button" class="btn btn-primary" (click)="register()" *ngIf="!this.userservice.getUser()">Sign-up</button>
+        </div>
+      </header>
 
-
-    <a (click)="profile()" *ngIf="this.userservice.setUser()">Profile</a>
 </div>

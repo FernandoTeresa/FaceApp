@@ -1,30 +1,81 @@
 <form #updateform="ngForm" (ngSubmit)="updateuser(updateform.value)">
-    <ul class="form-style-1">
-
-        <li>
-
-            <label>Username: {{this.userservice.setUser().username}}</label>
-        </li>
-
-        <li>
-            <label>Password</label>
-            <input type="password" name="password" class="field-divided" placeholder="New Password" value="" ngModel>
-            <input type="password" name="raw_password" class="field-divided" placeholder="Repeat New Password" ngModel>
+    <div class="m-4"> 
+         <div class="form-group row text-center mb-4">
+            <img src={{this.getfile()}} class="rounded mx-auto d-block m-2" style="width: 200px;"
             
-        </li>
+  alt="Avatar" />
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Username:</label>
+            <div class="col-sm-10">
+                <p class="form-control">{{this.userservice.getUser().username}}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col">
+              <input type="password" class="form-control" name="password" placeholder="Password" value="" ngModel>
+            </div>
+            <div class="col">
+              <input type="password" class="form-control" name="raw_password" placeholder="Repeat Password" ngModel>
+            </div>
+        </div>
+
+        <div class="text-left">
+
+            <app-file-upload></app-file-upload>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name" name="first_name" [(ngModel)]="this.userservice.getUser().first_name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name" name="last_name" [(ngModel)]="this.userservice.getUser().last_name">
+            </div>
+        </div>
+
+        <div class="form-group row p-2">
+            <label class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <p class="form-control">{{this.userservice.getUser().email}}</p>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+
+        <!-- <ul class="form-style-1"> -->
+
+            <!-- <li>
+
+                <label>Username: {{this.userservice.setUser().username}}</label>
+            </li> -->
+
+            <!-- <li>
+                <app-file-upload></app-file-upload>
+            </li> -->
+
+            <!-- <li>
+                <label>Password</label>
+                <input type="password" name="password" class="field-divided" placeholder="New Password" value="" ngModel>
+                <input type="password" name="raw_password" class="field-divided" placeholder="Repeat New Password" ngModel>
+                
+            </li> -->
 
 
-        <li>
-            <label>Full Name</label>
-            <input type="text" name="first_name" class="field-divided" placeholder="First Name" [(ngModel)]="this.userservice.setUser().first_name"/>
-            <input type="text" name="last_name" class="field-divided" placeholder="Last Name"[(ngModel)]="this.userservice.setUser().last_name"/>
-        </li>
-        <li>
-            <label>Email: {{this.userservice.setUser().email}} </label>
-        </li>
-       
-        <li>
-            <input type="submit" value="Submit" />
-        </li>
-    </ul>
-    </form>
+            <!-- <li>
+                <label>Full Name</label>
+                <input type="text" name="first_name" class="field-divided" placeholder="First Name" [(ngModel)]="this.userservice.setUser().first_name"/>
+                <input type="text" name="last_name" class="field-divided" placeholder="Last Name"[(ngModel)]="this.userservice.setUser().last_name"/>
+            </li>
+            <li>
+                <label>Email: {{this.userservice.setUser().email}} </label>
+            </li>
+        
+            <li>
+                <input type="submit" value="Submit" />
+            </li>
+        </ul>
+    </div> -->
+<!-- </form> -->

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { distinctUntilKeyChanged } from 'rxjs';
 import { User } from 'src/app/classes/user';
 import { FaceAppService } from 'src/app/services/face-app.service';
 import { UserService } from 'src/app/services/user.service';
@@ -26,6 +28,22 @@ export class UpdateUserComponent implements OnInit {
        this.userservice.updateUser(value);
        this.router.navigate(['/']);
      }
+
+  }
+
+  getfile(){
+    // let localUser = localStorage.getItem('user');
+
+    // if (!localUser){
+    //   return
+    // }
+    // let user = JSON.parse(localUser);
+   
+    // if (!user){
+    //   return
+    // }
+
+    return 'http://localhost:8080/pics/'+this.userservice.getUser().id+'/avatar.png';
 
   }
 

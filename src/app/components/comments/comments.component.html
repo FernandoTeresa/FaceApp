@@ -1,7 +1,12 @@
 <form #commentform="ngForm" (ngSubmit)="addcomment(commentform.value)" id="formAdd">
-    <br>
-    <label>Content:</label><br>
-    <textarea id="new_comments" placeholder="Seccion of comments" name="content" ngModel style="width: 400px; height: 100px; resize: none;" ></textarea>
-    <br>
-    <input type="submit" value="Submit">
+
+    <div class="form-group">
+        <label for="content">Comment:</label>
+        <textarea id="new_comments" placeholder="Seccion of comments" class="form-control" name="content" ngModel style="width: 400px; height: 100px; resize: none;" ></textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
 </form>
+

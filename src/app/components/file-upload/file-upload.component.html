@@ -1,0 +1,12 @@
+
+<form>
+    <div class="container p-2">
+        <div class="form-group">
+            <label for="formFile">Upload Photo:</label><br>
+            <input (change)="this.onFilechange($event)" class="form-control-file" type="file" id="formFile">
+            <br>
+            <button (click)="this.upload()" type="submit" class="btn btn-primary mt-3">Upload</button>
+        </div>
+    </div>
+</form>
+

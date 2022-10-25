@@ -1,0 +1,38 @@
+
+<div class="row mb-4">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <div class="card-body d-flex flex-column align-items-start">
+
+            <div *ngIf="comment" style="display: flex;">
+                <div class="card" style="width: 350px;">
+                    <form *ngIf="checkuser()" #updateform="ngForm" (ngSubmit)="updateComment()">
+
+                        <div class="card-body">
+                            <h6 class="card-title">{{comment.user.first_name}} {{comment.user.last_name}}</h6>
+
+                            <textarea type="text" class="form-control" name="input_content" [(ngModel)]="this.content" id="input_content" style="width: 100%;height:fit-content; resize: none;"></textarea>
+
+                            <p class="card-text">{{(comment.updated_at===undefined ? comment.created_at : comment.updated_at) | date:'short'}}</p>
+                            
+                        </div>
+                   
+                        <button type="submit" class="btn btn-success m-2" >Update</button>
+                    </form> 
+
+                    <div *ngIf="!checkuser()">
+
+                        <div class="card-body">
+                            <h6 class="card-title">{{comment.user.first_name}} {{comment.user.last_name}}</h6>
+
+                            <label type="text" name="input_content" id="input_content" style="width: 100%;height:fit-content; resize: none;">{{comment.content}}</label>
+
+                            <p class="card-text">{{(comment.updated_at===undefined ? comment.created_at : comment.updated_at) | date:'short'}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

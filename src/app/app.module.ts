@@ -12,8 +12,10 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PostsidComponent } from './components/postsid/postsid.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { UpdateCommentsComponent } from './components/update-comments/update-comments.component';
+import { PostsComponent } from './components/posts/posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,14 +26,16 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    PostsidComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    FileUploadComponent,
+    UpdateCommentsComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [AppComponent, ListPostsComponent, PostComponent, NotFoundComponent],
   bootstrap: [AppComponent]

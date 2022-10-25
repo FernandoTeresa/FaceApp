@@ -1,14 +1,20 @@
-<div style="display: flex;">
-    <!-- envia como parametro os valores dos campos introduzidos para a funçao login_form -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+<div class="main-block">
+    <h1>Login</h1>
     <form #loginForm="ngForm" (ngSubmit)="login_form(loginForm.value)">
-        <br>
-        <label>Username:</label><br>
-        <input id="username" type="text" placeholder="Username" name="username" ngModel>
-        <br>
-        <label>password:</label><br>
-        <input id="password" type="password" placeholder="Password" name="password" ngModel>
-        <br>
-        <input type="submit" value="Submit">
-        
+      <hr>
+    
+      <label id="icon" for="username"><i class="fas fa-user"></i></label>
+      <input type="text" name="username" id="new_username" placeholder="Userame" required ngModel/>
+
+      <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
+      <input type="password" name="password" id="new_password" placeholder="Password" required ngModel/>
+
+      <hr>
+      <div class="btn-block">
+        <button type="submit" href="/">Submit</button>
+      </div>
     </form>
-</div>
+  </div>            

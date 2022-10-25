@@ -39,15 +39,7 @@
     
 }
 
-#formAdd{
-    width: 450px;
-    padding: 10px;
-    border: 1px solid black;
-    margin: 15px;
-    float: right;
-}
-
-#formUpdate{
+.comments{
     width: 450px;
     padding: 10px;
     margin: 15px;
@@ -55,4 +47,10 @@
     border: 1px solid black;
     display: none;
     float: left;
+}
+
+.border_comment{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
 }

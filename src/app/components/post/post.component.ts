@@ -16,15 +16,18 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public title:string = "";
+
+  public content:string = ""
+  ;
   // recebe por argumento os dados introduzidos pelo user no objecto tipo Post
-  add(value:Post){
+  add(){
+
     //envia o que recebeu para o metodo addpost do serviço faceapp
-    this.faceappservice.addPost(value);
+    this.faceappservice.addPost(this.title, this.content);
     //depois de enviado limpa os campos
-    let x = <HTMLInputElement>document.getElementById("title_post");
-    x.value = '';
-    let y = <HTMLInputElement>document.getElementById("content_post");
-    y.value = '';
+    this.title = '';
+    this.content = '';
   }
 
 }

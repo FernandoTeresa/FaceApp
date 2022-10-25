@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostsidComponent } from './postsid.component';
+import { FileUploadComponent } from './file-upload.component';
 
-describe('PostsidComponent', () => {
-  let component: PostsidComponent;
-  let fixture: ComponentFixture<PostsidComponent>;
+describe('FileUploadComponent', () => {
+  let component: FileUploadComponent;
+  let fixture: ComponentFixture<FileUploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostsidComponent ]
+      declarations: [ FileUploadComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostsidComponent);
+    fixture = TestBed.createComponent(FileUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

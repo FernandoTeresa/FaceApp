@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { User } from '../classes/user';
 import { FaceAppService } from './face-app.service';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 
 const Header = {
@@ -33,16 +34,23 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  setUser(){
+  getUser(){
 
     let localUser = localStorage.getItem('user')
 
-    if (localUser != null){
-      return localUser = JSON.parse(localUser);
+    if (!localUser){
+      return;
     }
 
-  }
+    let user = JSON.parse(localUser)
 
+    if(!user){
+      return;
+    }
+    return user;
+
+
+  }
 
   log(){
     let logon = localStorage.getItem('token');
@@ -140,7 +148,7 @@ export class UserService {
 
   updateUser(value:User){
 
-    this.http.put<User>('http://localhost:85/user/'+ this.setUser().id, value, Header).subscribe((res:User)=>{    
+    this.http.put<User>('http://localhost:85/user/'+ this.getUser().id, value, Header).subscribe((res:User)=>{    
 
     },(err) => {
       switch(err.status){
@@ -166,6 +174,20 @@ export class UserService {
     })
 
   }
+
+  uploadfile(file:File){
+    let formParams = new FormData();
+    formParams.append('photo', file);
+    return this.http.post('http://localhost:85/user/'+ this.getUser().id+'/img',formParams,Header);
+  }
+
+  checkfile(){
+    let check = false
+    let file = this.http.get('http://localhost:8080/pics/'+this.getUser().id+'/avatar.png');
+
+    console.log(file)
+  }
+
 
   logout(){
     this.http.post('http://localhost:85/logout',Header);
