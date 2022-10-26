@@ -11,34 +11,29 @@ import { Post } from 'src/app/classes/post';
 })
 export class UpdateCommentsComponent implements OnInit {
 
-  @Input() comment: Comment |null = null;
-  @Input() Idpost:number |null = null;
+  @Input() comment: Comment;
 
   constructor(public faceappservice:FaceAppService, public userservice: UserService) { }
 
   ngOnInit(): void {
-  }
 
+    this.content = this.comment.content
+  }
   public content:string="";
+  
 
   checkuser(){
     return this.userservice.getUser() && this.comment && this.comment.id_user === this.userservice.getUser().id
   }
 
-  updateComment(){
+
+  updatecomment(){
 
     if (this.comment === null){
       return
     }
-    if (!this.Idpost || !this.comment.id){
-      return
-    }
 
-    console.log(this.content);
-
-    this.faceappservice.updateComment(this.content, this.comment.id, this.Idpost);
-
-    this.content= '';
+    this.faceappservice.updateComment(this.content, this.comment);
 
   }
 

@@ -190,9 +190,11 @@ export class UserService {
 
 
   logout(){
-    this.http.post('http://localhost:85/logout',Header);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    this.http.post('http://localhost:85/logout',Header).subscribe(()=>{
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    });
+   
   }
 
 }

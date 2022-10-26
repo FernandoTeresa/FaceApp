@@ -8,11 +8,15 @@
 
           <li><a class="nav-link px-2 link-dark" (click)="profile()" *ngIf="this.userservice.getUser()">Profile</a></li>
         </ul>
-  
-        <div class="col-md-3 text-end">
-          <button type="button" class="btn btn-outline-primary me-2" (click)="login()" *ngIf="!this.userservice.getUser()">Login</button>
-          <button type="button" class="btn btn-outline-primary me-2" (click)="logout()" *ngIf="this.userservice.getUser()">Logout</button>
-          <button type="button" class="btn btn-primary" (click)="register()" *ngIf="!this.userservice.getUser()">Sign-up</button>
+
+        <div style="width: 100%;">
+
+          <div style="float: right;">
+            <button type="button" class="btn btn-outline-primary me-2" (click)="login()" *ngIf="!this.userservice.getUser()">Login</button>
+            <button type="button" class="btn btn-outline-primary me-2" (click)="logout()" *ngIf="this.userservice.getUser()">Logout</button>
+            <button type="button" class="btn btn-primary" (click)="register()" *ngIf="!this.userservice.getUser()">Sign-up</button>
+          </div>
+
         </div>
       </header>
 

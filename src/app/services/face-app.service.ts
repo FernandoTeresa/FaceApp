@@ -213,8 +213,7 @@ export class FaceAppService {
     
   }
 
-  updateComment(content:string, idcomment:number, idpost:number){
-
+  updateComment(content:string, comment:Comment){
 
     let iduser = this.userservice.getUser().id;
 
@@ -224,16 +223,9 @@ export class FaceAppService {
       return;
     }
 
-    let value = {
-      id:idcomment,
-      content:content,
-      id_post:idpost,
-      id_user:iduser,
-      user:this.userservice.getUser()
-    }
-    console.log(value);
+   comment.content = content
 
-    this.http.put<Comment>('http://localhost:85/post/comment/update/'+idcomment,value,Header).subscribe((res:Comment)=>{
+    this.http.put<Comment>('http://localhost:85/post/comment/update/'+comment.id,comment,Header).subscribe((res:Comment)=>{
 
       this.dataRequestPost();
 

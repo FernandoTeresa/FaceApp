@@ -6,18 +6,18 @@
 
             <div *ngIf="comment" style="display: flex;">
                 <div class="card" style="width: 350px;">
-                    <form *ngIf="checkuser()" #updateform="ngForm" (ngSubmit)="updateComment()">
+                    <form *ngIf="checkuser()" #updateform="ngForm" (ngSubmit)="updatecomment()">
 
                         <div class="card-body">
                             <h6 class="card-title">{{comment.user.first_name}} {{comment.user.last_name}}</h6>
 
-                            <textarea type="text" class="form-control" name="input_content" [(ngModel)]="this.content" id="input_content" style="width: 100%;height:fit-content; resize: none;"></textarea>
+                            <textarea type="text" class="form-control" name="input_content" [(ngModel)]="content" id="input_content" style="width: 100%;height:fit-content; resize: none;">{{this.content}}</textarea>
 
                             <p class="card-text">{{(comment.updated_at===undefined ? comment.created_at : comment.updated_at) | date:'short'}}</p>
                             
                         </div>
                    
-                        <button type="submit" class="btn btn-success m-2" >Update</button>
+                        <button type="submit" class="btn btn-success m-2">Update</button>
                     </form> 
 
                     <div *ngIf="!checkuser()">
